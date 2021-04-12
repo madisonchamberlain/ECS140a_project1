@@ -25,6 +25,16 @@ var tests = []Test{
 		out: 0,
 	},
 	// TODO add more tests for 100% test coverage
+	// no minimum/all the same
+	{
+		in:  []int{1, 1, 1, 1},
+		out: 1,
+	},
+	// only one number
+	{
+		in:  []int{1},
+		out: 1,
+	},
 }
 
 func TestMin(t *testing.T) {
