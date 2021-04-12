@@ -18,8 +18,24 @@ func Reachable(
 	// `input` is a (possible empty) list of symbols to apply.
 	input []rune,
 ) bool {
-	// TODO Write the Reachable function,
-	// return true if the nfa accepts the input and can reach the final state with that input,
-	// return false otherwise
-	panic("TODO: implement this!")
+	// if you the length is 0 and you start at the final state return true
+	if len(input) == 0 {
+		if start == final {
+			return true
+		} else {
+			return false
+		}
+	} else {
+		// find the states reachable from current state
+		CurReachable := transitions(start, input[0])
+		// for each reachable state recurse to see if you can reach the end
+		for _, reachable := range CurReachable {
+			if Reachable(transitions, reachable, final, input[1:len(input)]) {
+				// if the previous recursion returns true; return true
+				return true
+			}
+		}
+		// if the previous recursion returns false; return false
+		return false
+	}
 }
